@@ -9,9 +9,9 @@ class AboutView(TemplateView):
     template_name = "about.html"
 
 class GuestView(TemplateView):
-    template_name = "custom.html"
+    template_name = "guest.html"
 
-def custom(request):
+def guest(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -28,7 +28,7 @@ def custom(request):
     }
 
 
-    return render(request, 'weather/custom.html')  # returns the custom.html template
+    return render(request, 'weather/guest.html')  # returns the guest.html template
 
 
 def index(request):

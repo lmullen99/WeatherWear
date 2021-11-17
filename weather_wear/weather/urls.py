@@ -7,6 +7,6 @@ urlpatterns = [
     path('', views.index),  #the path for our index view
     path('accounts/', include('django.contrib.auth.urls')),
     path('about/', AboutView.as_view(), name = "About"),
-    path('custom/', GuestView.as_view(), name = "Guest"),
+    path('guest/', GuestView.as_view(), name = "Guest"),
 
 ]
