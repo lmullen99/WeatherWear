@@ -79,11 +79,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'users': {
-        'NAME' : 'user_data',
+    'outfits': {
         'ENGINE' : 'django.db.backends.sqlite3',
-        'USER' : 'mysql_user',
-        'PASSWORD': 'private'
+        'NAME' : 'OUTFITS',
+        'USER' : 'db.sqlite3',
     }
 }
 

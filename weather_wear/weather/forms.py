@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm, TextInput
 from .models import City
 
@@ -7,4 +8,11 @@ class CityForm(ModelForm):
         fields = ['name']
         widgets = {
             'name': TextInput(attrs={'class' : 'input', 'placeholder' : 'City Name'}),
-        } #updates the input class to have the correct Bulma class and placeholder
+        }
+
+class SearchForm(forms.Form):
+    fields = ['name']
+    widgets = {
+        'name': TextInput(attrs={'class': 'input', 'placeholder': ' Enter a City Name'}),
+    }
+

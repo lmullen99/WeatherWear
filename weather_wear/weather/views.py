@@ -2,6 +2,34 @@ from django.shortcuts import render
 import requests
 from .models import City
 from .forms import CityForm
+from .forms import SearchForm
+from django.views.generic import TemplateView
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+class GuestView(TemplateView):
+    template_name = "custom.html"
+
+def custom(request):
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        form.save()
+    form = SearchForm()
+    city = 'Destin'
+    city_weather = requests.get(url.format(city)).json()  # request the API data and convert the JSON to Python data types
+    print(city_weather)
+    weather = {
+        'city' : city,
+        'temperature' : city_weather['main']['temp'],
+        'description' : city_weather['weather'][0]['description'],
+        'icon' : city_weather['weather'][0]['icon']
+    }
+
+
+    return render(request, 'weather/custom.html')  # returns the custom.html template
+
 
 def index(request):
     api_id = '845b66b8bb799526bfe36f2e6c41589b'
