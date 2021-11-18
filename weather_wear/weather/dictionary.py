@@ -10,7 +10,7 @@ cur = conn.cursor()
 
 # drop table statement
 try:
-    conn.execute('''Drop table OUTFITS;''')
+    conn.execute('''Drop table OUTFITS''')
     conn.commit()
     print('Outfits table dropped.')
 except:
@@ -107,7 +107,7 @@ cur.execute("Insert Into OUTFITS (Temp, Top, Bottom, Outerwear, Accessories, Foo
 conn.commit()
 
 print('Outfit Table\n')
-for row in cur.execute('SELECT * FROM OUTFITS;'):
+for row in cur.execute('SELECT * FROM OUTFITS'):
     print(row)
 
 # close database connection

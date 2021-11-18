@@ -1,5 +1,7 @@
+
 from django.shortcuts import render
 import requests
+import sqlite3 as sql
 from .models import City
 from .forms import CityForm
 from .forms import SearchForm
@@ -27,11 +29,13 @@ def guest(request):
         'icon' : city_weather['weather'][0]['icon']
     }
 
-
     return render(request, 'weather/guest.html')  # returns the guest.html template
 
 
+
+
 def index(request):
+
     api_id = '845b66b8bb799526bfe36f2e6c41589b'
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     # call the API on all the user's favorite cities
@@ -57,5 +61,12 @@ def index(request):
         weather_data.append(weather)
 
     context = {'weather_data' : weather_data, 'form' : form}
+
+    with sql.connect("weather/OUTFITS.db") as con:
+        cur = con.cursor()
+        sql_select_query = '''SELECT * FROM OUTFITS'''
+        cur.execute(sql_select_query)
+        con.commit()
+    con.close()
 
     return render(request, 'weather/index.html', context)
