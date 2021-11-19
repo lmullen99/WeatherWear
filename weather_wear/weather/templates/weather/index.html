@@ -14,11 +14,18 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
+                <div class = "has-background-black">
                 <h1 class="title">
                     What's the weather in your cities?
                 </h1>
+                 <h3 class="button">
+                    <a href="guest/">Search for a City</a>
+                </h3>
+                  <h3 class="button">
+                    <a href="guest/">Log out</a>
+                </h3>
+                </div>
             </div>
-
         </div>
     </section>
     <section class="section">
@@ -60,6 +67,8 @@
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <br> {{ weather.humidity }} % humidity
+                                        <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
                                         <br> add outfit description here
                                             <table>
@@ -96,7 +105,6 @@
                                                 </tr>
                                                 {% endfor %}
                                             </table>
-
                                     </p>
                                 </div>
                             </div>

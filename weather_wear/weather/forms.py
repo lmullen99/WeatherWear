@@ -10,9 +10,3 @@ class CityForm(ModelForm):
             'name': TextInput(attrs={'class' : 'input', 'placeholder' : 'City Name'}),
         }
 
-class SearchForm(forms.Form):
-    fields = ['name']
-    widgets = {
-        'name': TextInput(attrs={'class': 'input', 'placeholder': ' Enter a City Name'}),
-    }
-

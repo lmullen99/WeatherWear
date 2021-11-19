@@ -17,6 +17,9 @@
                    <h3 class="button">
                     <a href="admin/">Log In</a>
                 </h3>
+                 <h3 class="button">
+                    <a href="admin/">Sign Up</a>
+                </h3>
             </div>
         </div>
     </section>
@@ -27,8 +30,8 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="field has-addons">
-                            <div class="control is-expanded">
-                                {{ form }}
+                            <div class=""control is-expanded">
+                                <input class="input" type="text" id="city" name="city" placeholder="City Name">
                             </div>
                             <div class="control">
                                 <button class="button is-info">

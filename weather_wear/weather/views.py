@@ -4,7 +4,6 @@ import requests
 import sqlite3 as sql
 from .models import City
 from .forms import CityForm
-from .forms import SearchForm
 from django.views.generic import TemplateView
 
 class AboutView(TemplateView):
@@ -13,29 +12,30 @@ class AboutView(TemplateView):
 class GuestView(TemplateView):
     template_name = "guest.html"
 
+
 def guest(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     if request.method == 'POST':
-        form = SearchForm(request.POST)
-        form.save()
-    form = SearchForm()
-    city = 'Destin'
+        city = request.POST['city']
+    city = "Melbourne"
     city_weather = requests.get(url.format(city)).json()  # request the API data and convert the JSON to Python data types
     print(city_weather)
     weather = {
-        'city' : city,
-        'temperature' : city_weather['main']['temp'],
-        'description' : city_weather['weather'][0]['description'],
-        'icon' : city_weather['weather'][0]['icon']
+        'city': city,
+        'temperature': city_weather['main']['temp'],
+        'humidity': city_weather['main']['humidity'],
+        'description': city_weather['weather'][0]['description'],
+        'wind': city_weather['wind']['speed'],
+        'icon': city_weather['weather'][0]['icon']
     }
 
-    return render(request, 'weather/guest.html')  # returns the guest.html template
-
-
+    return render(request, 'weather/guest.html', weather)  # returns the guest.html template
 
 
 def index(request):
-
+    x = False
+    if not x:
+        print("route to login page here")
     api_id = '845b66b8bb799526bfe36f2e6c41589b'
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     # call the API on all the user's favorite cities
@@ -44,9 +44,7 @@ def index(request):
     if request.method == 'POST':
         form = CityForm(request.POST)
         form.save()
-
     form = CityForm()
-
     weather_data = []
     for city in cities:
         #request JSON data and converts to python data type
@@ -55,7 +53,9 @@ def index(request):
         weather = {
             'city' : city,
             'temperature' : city_weather['main']['temp'],
+            'humidity' : city_weather['main']['humidity'],
             'description' : city_weather['weather'][0]['description'],
+            'wind': city_weather['wind']['speed'],
             'icon' : city_weather['weather'][0]['icon']
         }
         weather_data.append(weather)
