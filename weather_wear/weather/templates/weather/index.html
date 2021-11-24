@@ -21,9 +21,19 @@
                  <h3 class="button">
                     <a href="{% url 'guest' %}">Search for a City</a>
                 </h3>
+                    {% if user.is_authenticated %}
                 <h3 class="button">
                      <a href="{% url 'logout' %}">Log Out</a>
                 </h3>
+                    {% else %}
+
+                    <h3 class="button">
+                    <a href="{% url 'login' %}">Log In</a>
+                </h3>
+                    <h3 class="button">
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                </h3>
+                    {% endif %}
                 </div>
             </div>
         </div>

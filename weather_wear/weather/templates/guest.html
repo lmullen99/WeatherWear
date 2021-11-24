@@ -39,7 +39,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="field has-addons">
-                            <div class=""control is-expanded">
+                            <div class="control is-expanded">
                                 <input class="input" type="text" id="city" name="city" placeholder="City Name">
                             </div>
                             <div class="control">
@@ -70,9 +70,10 @@
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <br> {{ weather.humidity }} % humidity
+                                        <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
                                         <br> add outfit forecast here
-
 
                                     </p>
                                 </div>
