@@ -24,22 +24,24 @@ class SignUpView(generic.CreateView):
 
 def guest(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
+    city = "Melbourne"
     if request.method == 'POST':
         print("we entered a POST method on guest page")
-        #city = request.POST['city']
-        city = "Melbourne"
-        city_weather = requests.get(url.format(city)).json()  # request the API data and convert the JSON to Python data types
-        print(city_weather)
-        weather = {
-            'city': city,
-            'temperature': city_weather['main']['temp'],
-            'humidity': city_weather['main']['humidity'],
-            'description': city_weather['weather'][0]['description'],
-            'wind': city_weather['wind']['speed'],
-            'icon': city_weather['weather'][0]['icon']
-        }
+        city = request.POST['city']
 
-    return render(request, 'weather/guest.html', weather)  # returns the guest.html template
+    city_weather = requests.get(
+        url.format(city)).json()  # request the API data and convert the JSON to Python data types
+    print(city_weather)
+    weather = {
+        'city': city,
+        'temperature': city_weather['main']['temp'],
+        'humidity': city_weather['main']['humidity'],
+        'description': city_weather['weather'][0]['description'],
+        'wind': city_weather['wind']['speed'],
+        'icon': city_weather['weather'][0]['icon']
+    }
+    context = {'weather' : weather}
+    return render(request, 'guest.html', context)  # returns the guest.html template
 
 
 def index(request):
