@@ -25,9 +25,9 @@ class SignUpView(generic.CreateView):
 
 def guest(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
+    city = "Tallahassee"                                  # by default opens on TLH and allows user to search somewhere else
     if request.method == 'POST':
         city = request.POST['city']
-    city = "Melbourne"
     city_weather = requests.get(url.format(city)).json()  # request the API data and convert the JSON to Python data types
     print(city_weather)
     weather = {
@@ -38,12 +38,7 @@ def guest(request):
         'wind': city_weather['wind']['speed'],
         'icon': city_weather['weather'][0]['icon']
     }
-    with sql.connect("weather/OUTFITS.db") as con:
-        cur = con.cursor()
-        sql_select_query = '''SELECT * FROM OUTFITS'''
-        cur.execute(sql_select_query)
-        con.commit()
-    con.close()
+    context = {'weather' : weather}
 
     with sql.connect("weather/OUTFITS.db") as con:
         cur = con.cursor()
@@ -52,13 +47,10 @@ def guest(request):
         con.commit()
     con.close()
 
-    return render(request, 'weather/guest.html', weather)  # returns the guest.html template
+    return render(request, 'guest.html', context)  # returns the guest.html
 
 
 def index(request):
-    x = False
-    if not x:
-        print("route to login page here")
     api_id = '845b66b8bb799526bfe36f2e6c41589b'
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     # call the API on all the user's favorite cities
