@@ -38,6 +38,12 @@ def guest(request):
         'wind': city_weather['wind']['speed'],
         'icon': city_weather['weather'][0]['icon']
     }
+    with sql.connect("weather/OUTFITS.db") as con:
+        cur = con.cursor()
+        sql_select_query = '''SELECT * FROM OUTFITS'''
+        cur.execute(sql_select_query)
+        con.commit()
+    con.close()
 
     with sql.connect("weather/OUTFITS.db") as con:
         cur = con.cursor()
