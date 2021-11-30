@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 
+
 class AboutView(TemplateView):
     template_name = "about.html"
 
@@ -37,6 +38,13 @@ def guest(request):
         'wind': city_weather['wind']['speed'],
         'icon': city_weather['weather'][0]['icon']
     }
+
+    with sql.connect("weather/OUTFITS.db") as con:
+        cur = con.cursor()
+        sql_select_query = '''SELECT * FROM OUTFITS'''
+        cur.execute(sql_select_query)
+        con.commit()
+    con.close()
 
     return render(request, 'weather/guest.html', weather)  # returns the guest.html template
 
@@ -71,11 +79,10 @@ def index(request):
 
     context = {'weather_data' : weather_data, 'form' : form}
 
-    with sql.connect("weather/OUTFITS.db") as con:
-        cur = con.cursor()
-        sql_select_query = '''SELECT * FROM OUTFITS'''
-        cur.execute(sql_select_query)
-        con.commit()
-    con.close()
+    con = sql.connect('weather/OUTFITS.db')
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute('''SELECT * FROM OUTFITS;''')
+    rows = cur.fetchall()
 
     return render(request, 'weather/index.html', context)

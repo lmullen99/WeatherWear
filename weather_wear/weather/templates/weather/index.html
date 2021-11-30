@@ -1,6 +1,7 @@
 <!--index.html
     This file handles the view for the home page of a logged in user-->
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,36 +72,34 @@
                                         <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
                                         <br> add outfit description here
-                                            <table>
-                                                {% for row in sql_select_query %}
+                                        <table>
+                                                {% for row in rows %}
                                                 <tr>
                                                     {% if weather.temperature <= 39 %}
                                                         test
-                                                        <td>{{ row.0 }}</td>
                                                     {% endif %}
                                                     {% if weather.temperature >= 40 and weather.temperature <= 49 %}
                                                         test1
-                                                        <td>{{ row.1 }}</td>
                                                     {% endif %}
                                                     {% if weather.temperature >= 50 and weather.temperature <= 59 %}
                                                         test2
-                                                        <td>{{ row.2 }}</td>
+
                                                     {% endif %}
                                                     {% if weather.temperature >= 60 and weather.temperature <= 69 %}
                                                         test3
-                                                        <td>{{ row.3 }}</td>
+
                                                     {% endif %}
                                                     {% if weather.temperature >= 70 and weather.temperature <= 79 %}
                                                         test4
-                                                        <td>{{ row.4 }}</td>
+
                                                     {% endif %}
                                                     {% if weather.temperature >= 80 and weather.temperature <= 89 %}
                                                         test5
-                                                        <td>{{ row.5 }}</td>
+
                                                     {% endif %}
                                                     {% if weather.temperature >= 90 %}
                                                         test6
-                                                        <td>{{ row.6 }}</td>
+
                                                     {% endif %}
                                                 </tr>
                                                 {% endfor %}
