@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class City(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="favcities", null=True)
     name = models.CharField(max_length=25, unique = True)
     # make sure name is unique here
 
