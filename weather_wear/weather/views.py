@@ -51,16 +51,19 @@ def guest(request):
 
 
 def index(request):
+    print("\nGenerated an index request...\n")
     api_id = '845b66b8bb799526bfe36f2e6c41589b'
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     # call the API on all the user's favorite cities
     cities = City.objects.all()
 
     if request.method == 'POST':
+        print("\n Encountered request on index page...")
         form = CityForm(request.POST)
         form.save()
     form = CityForm()
     weather_data = []
+
     for city in cities:
         #request JSON data and converts to python data type
         city_weather = requests.get(url.format(city)).json()
@@ -77,10 +80,12 @@ def index(request):
 
     context = {'weather_data' : weather_data, 'form' : form}
 
+    """
     con = sql.connect('weather/OUTFITS.db')
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute('''SELECT * FROM OUTFITS;''')
     rows = cur.fetchall()
+    """
 
     return render(request, 'weather/index.html', context)

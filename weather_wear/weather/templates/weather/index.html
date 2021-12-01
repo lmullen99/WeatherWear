@@ -23,6 +23,8 @@
                     <a href="{% url 'guest' %}">Search for a City</a>
                 </h3>
                     {% if user.is_authenticated %}
+
+                    <h2>Hi {{ user.username }}!</h2>
                 <h3 class="button">
                      <a href="{% url 'logout' %}">Log Out</a>
                 </h3>

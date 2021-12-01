@@ -10,7 +10,7 @@ urlpatterns = [
     path('', views.index, name='index'),  #the path for our index view
     path('home/', TemplateView.as_view(template_name='home.html'), name="home"),
     path('signup/', SignUpView.as_view(), name='signup'),
-    path('about/', AboutView.as_view(), name="About"),
+    path('about/', AboutView.as_view(), name="about"),
     path('guest/', views.guest, name="guest"),
     path('accounts/', include('django.contrib.auth.urls')),
 
