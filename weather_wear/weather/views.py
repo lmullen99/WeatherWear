@@ -51,7 +51,7 @@ def index(request):
     print("current user is:")
     print(curr_user)
    # cities = City.objects.all()
-    cities = City.objects.all().filter(name='destin')
+    cities = City.objects.all().filter(owner=request.user)
 
     if request.method == 'POST':
         form = CityForm(request.POST)                    # create a City instance with the entered city name
