@@ -1,21 +1,33 @@
 <!-- templates/registration/login.html -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WeatherWear</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
-</head>
+
 
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
+
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Log in
+                </h1>
+            </div>
+        </div>
+    </section>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button style="font-size: 15px;" type="submit">Log In</button>
+    </form>
+{% endblock %}
+
+<!--
 <h2>Log In</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Log In</button>
 </form>
-{% endblock %}
+-->
