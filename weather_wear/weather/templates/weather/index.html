@@ -16,7 +16,7 @@
             <div class="container">
                 <div class = "has-background-black">
                 <h1 class="title">
-                    What's the weather in your cities?
+                    Weather Report in your Favorite Cities?
                 </h1>
                  <h3 class="button">
                     <a href="{% url 'guest' %}">Search for a City</a>
@@ -48,6 +48,8 @@
                             <div class="control is-expanded">
                                 {{ form.name }}
                             </div>
+                            <!--next line is new, trying to pass user to the form
+                            <input type="hidden" name="username" value="{{ user.username }}" />-->
                             <div class="control">
                                 <button class="button is-info">
                                     Add City

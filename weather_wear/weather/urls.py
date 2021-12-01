@@ -7,11 +7,11 @@ from django.urls import path
 from .views import SignUpView
 
 urlpatterns = [
-    path('', views.index, name='index'),  #the path for our index view
+    path('index/', views.index, name='index'),  #the path for our index view
     path('home/', TemplateView.as_view(template_name='home.html'), name="home"),
     path('signup/', SignUpView.as_view(), name='signup'),
     path('about/', AboutView.as_view(), name="About"),
-    path('guest/', views.guest, name="guest"),
+    path('', views.guest, name="guest"),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]
