@@ -1,5 +1,6 @@
 
 from django.shortcuts import render
+from django.http import HttpResponse
 import requests
 import sqlite3 as sql
 from .models import City
@@ -42,6 +43,15 @@ def guest(request):
     context = {'weather' : weather}
     return render(request, 'guest.html', context)  # returns the guest.html template
 
+
+def delete(request):
+    if request.method == 'POST':
+        city = request.POST['pk']
+        City.objects.get(name = city).delete()
+        #return render(request, views.index)
+        return HttpResponse("Deletion successful ")
+    else:
+        return HttpResponse("Deletion failed ")
 
 def index(request):
     api_id = '845b66b8bb799526bfe36f2e6c41589b'

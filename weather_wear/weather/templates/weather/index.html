@@ -11,28 +11,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
 </head>
 <body>
-    <section class="hero is-primary">
+    <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
                 <div class = "has-background-black">
                 <h1 class="title">
                     Weather Report in your Favorite Cities?
                 </h1>
-                 <h3 class="button">
+                 <button class="button">
                     <a href="{% url 'guest' %}">Search for a City</a>
-                </h3>
+                </button>
                     {% if user.is_authenticated %}
-                <h3 class="button">
+                <button class="button">
                      <a href="{% url 'logout' %}">Log Out</a>
-                </h3>
+                </button>
                     {% else %}
 
-                    <h3 class="button">
+                    <button class="button">
                     <a href="{% url 'login' %}">Log In</a>
-                </h3>
-                    <h3 class="button">
+                </button>
+                    <button class="button">
                     <a href="{% url 'signup' %}">Sign Up</a>
-                </h3>
+                </button>
                     {% endif %}
                 </div>
             </div>
@@ -51,7 +51,7 @@
                             <!--next line is new, trying to pass user to the form
                             <input type="hidden" name="username" value="{{ user.username }}" />-->
                             <div class="control">
-                                <button class="button is-info">
+                                <button class="button is-primary">
                                     Add City
                                 </button>
                             </div>
@@ -83,6 +83,17 @@
                                         <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
                                         <br> add outfit description here
+                                        <form action="{% url 'delete' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="{{weather.city}}" name="pk"/>
+                                                <div class="control">
+                                                    <button class="button is-danger is-small" >
+                                                        Delete City
+                                                    </button>
+                                                </div>
+                                        </form>
+
+
                                             <table>
                                                 {% for row in sql_select_query %}
                                                 <tr>
