@@ -14,10 +14,12 @@
             </div>
         </div>
     </section>
-  <form method="post">
+
+
+  <form class="box" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button style="font-size: 15px;"  type="submit">
+    <button class="button is-link" style="font-size: 15px;"  type="submit">
             Sign Up
     </button>
   </form>

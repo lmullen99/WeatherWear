@@ -1,6 +1,5 @@
 <!-- templates/registration/login.html -->
 
-
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
@@ -16,11 +15,14 @@
             </div>
         </div>
     </section>
-    <form method="post">
+
+
+    <form class="box" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button style="font-size: 15px;" type="submit">Log In</button>
+        <button class= "button is-link" style="font-size: 15px;" type="submit">Log In</button>
     </form>
+
 {% endblock %}
 
 <!--
