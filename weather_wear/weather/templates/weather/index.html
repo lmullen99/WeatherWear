@@ -111,6 +111,7 @@
                                             <br> accessories: {{ outfit.accessories }}
                                             <br> footwear: {{outfit.footwear }}
                                      </div>
+                                    <!-- delete a city functionality -->
                                         <form action="{% url 'delete' %}" method="POST">
                                             {% csrf_token %}
                                             <input type="hidden" value="{{weather.city}}" name="pk"/>

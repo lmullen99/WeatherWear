@@ -96,15 +96,24 @@
                                         <br> {{ weather.humidity }} % humidity
                                         <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
-                                        <div class = "box" >
-                                            {{ weather.city }} outfit forecast:
-                                            <br> top: {{ outfit.top }}
-                                            <br> bottom: {{ outfit.bottom }}
+                                        <hr>
+                                    <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
+                                     <div class = "columns" >
+                                         <div class="column">
+                                            <br> top:
+                                             <br> {{ outfit.top }}
+                                            <br> bottom:
+                                             <br> {{ outfit.bottom }}
                                                 {% if outfit.outwear != "none" %}
-                                            <br> outerwear: {{ outfit.outerwear }}
+                                         </div>
+                                        <div class="column">
+                                            <br> outerwear:
+                                            <br> {{ outfit.outerwear }}
                                                  {% endif %}
-                                            <br> accessories: {{ outfit.accessories }}
-                                            <br> footwear: {{outfit.footwear }}
+                                            <br> accessories:
+                                            <br> {{ outfit.accessories }}
+                                            <br> footwear:
+                                            <br> {{outfit.footwear }}
                                      </div>
                                     </p>
                                 </div>
