@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import requests
 import sqlite3 as sql
-from .models import City
+from .models import City, Outfit
 from .forms import CityForm
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
@@ -44,7 +44,10 @@ def guest(request):
         'wind': city_weather['wind']['speed'],
         'icon': city_weather['weather'][0]['icon']
     }
-    context = {'weather' : weather}
+    temperature = round(weather['temperature']/10)*10
+    outfit = Outfit.objects.get(temp = temperature)
+    context = {'weather' : weather, 'outfit' : outfit}
+
     return render(request, 'guest.html', context)               # returns the guest.html template
 
 
@@ -57,6 +60,7 @@ def delete(request):
     else:
         messages.error(request, "Deletion unsuccessful.")
         return HttpResponseRedirect('index')
+
 
 def index(request):
     api_id = '845b66b8bb799526bfe36f2e6c41589b'
@@ -83,6 +87,7 @@ def index(request):
 
     form = CityForm()
     weather_data = []
+    outfit_data = []
 
     for city in cities:
             city_weather = requests.get(url.format(city)).json()        #request JSON data and converts to python data type
@@ -95,14 +100,11 @@ def index(request):
                 'icon' : city_weather['weather'][0]['icon']
             }
             weather_data.append(weather)
-    context = {'weather_data' : weather_data, 'form' : form}
+            temperature = round(weather['temperature'] / 10) * 10
+            outfit = Outfit.objects.get(temp=temperature)
+            outfit_data.append(outfit)
 
-    with sql.connect("weather/OUTFITS.db") as con:
-        cur = con.cursor()
-        sql_select_query = '''SELECT * FROM OUTFITS'''
-        cur.execute(sql_select_query)
-        con.commit()
-    con.close()
+    context = {'weather_data' : weather_data, 'form' : form, 'outfit_data' : outfit_data}
 
 
     return render(request, 'weather/index.html', context)

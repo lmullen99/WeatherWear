@@ -97,52 +97,25 @@
                                         <br> {{ weather.humidity }} % humidity
                                         <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
-                                        <br> add outfit description here
+                                        <div class = "box" >
+                                            {{ weather.city }} outfit forecast:
+                                            <br> top: {{ outfit.top }}
+                                            <br> bottom: {{ outfit.bottom }}
+                                                {% if outfit.outwear != "none" %}
+                                            <br> outerwear: {{ outfit.outerwear }}
+                                                 {% endif %}
+                                            <br> accessories: {{ outfit.accessories }}
+                                            <br> footwear: {{outfit.footwear }}
+                                     </div>
                                         <form action="{% url 'delete' %}" method="POST">
                                             {% csrf_token %}
                                             <input type="hidden" value="{{weather.city}}" name="pk"/>
                                                 <div class="control">
-                                                    <button class="button is-danger is-small" >
+                                                    <button class="button is-danger is-light is-small" >
                                                         Delete City
                                                     </button>
                                                 </div>
                                         </form>
-
-
-                                            <table>
-                                                {% for row in sql_select_query %}
-                                                <tr>
-                                                    {% if weather.temperature <= 39 %}
-                                                        test
-                                                        <td>{{ row.0 }}</td>
-                                                    {% endif %}
-                                                    {% if weather.temperature >= 40 and weather.temperature <= 49 %}
-                                                        test1
-                                                        <td>{{ row.1 }}</td>
-                                                    {% endif %}
-                                                    {% if weather.temperature >= 50 and weather.temperature <= 59 %}
-                                                        test2
-                                                        <td>{{ row.2 }}</td>
-                                                    {% endif %}
-                                                    {% if weather.temperature >= 60 and weather.temperature <= 69 %}
-                                                        test3
-                                                        <td>{{ row.3 }}</td>
-                                                    {% endif %}
-                                                    {% if weather.temperature >= 70 and weather.temperature <= 79 %}
-                                                        test4
-                                                        <td>{{ row.4 }}</td>
-                                                    {% endif %}
-                                                    {% if weather.temperature >= 80 and weather.temperature <= 89 %}
-                                                        test5
-                                                        <td>{{ row.5 }}</td>
-                                                    {% endif %}
-                                                    {% if weather.temperature >= 90 %}
-                                                        test6
-                                                        <td>{{ row.6 }}</td>
-                                                    {% endif %}
-                                                </tr>
-                                                {% endfor %}
-                                            </table>
                                     </p>
                                 </div>
                             </div>

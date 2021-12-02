@@ -11,9 +11,10 @@
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">
+                <h1 class="title level-left">
                     Welcome {{ user.username }}!
                 </h1>
+
                 {% if not user.is_authenticated %}
                    <h3 class="button">
                     <a href="{% url 'login' %}">Log In</a>
@@ -23,7 +24,7 @@
                 </h3>
                 {% else %}
                  <h3 class="button">
-                     <a href="{% url 'index' %}">Home</a>
+                     <a href="{% url 'index' %}">Favorites List</a>
                 </h3>
                   <h3 class="button">
                      <a href="{% url 'logout' %}">Log Out</a>
@@ -90,8 +91,16 @@
                                         <br> {{ weather.humidity }} % humidity
                                         <br> {{ weather.wind }} mph wind speed
                                         <br> {{ weather.description }}
-                                        <br> add outfit forecast here
-
+                                        <div class = "box" >
+                                            {{ weather.city }} outfit forecast:
+                                            <br> top: {{ outfit.top }}
+                                            <br> bottom: {{ outfit.bottom }}
+                                                {% if outfit.outwear != "none" %}
+                                            <br> outerwear: {{ outfit.outerwear }}
+                                                 {% endif %}
+                                            <br> accessories: {{ outfit.accessories }}
+                                            <br> footwear: {{outfit.footwear }}
+                                     </div>
                                     </p>
                                 </div>
                             </div>

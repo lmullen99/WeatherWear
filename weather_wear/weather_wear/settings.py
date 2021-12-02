@@ -81,11 +81,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'outfits': {
-        'ENGINE' : 'django.db.backends.sqlite3',
-        'NAME' : 'weather/OUTFITS.db',
-        'USER' : 'db.sqlite3',
-    }
 }
 
 
