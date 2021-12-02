@@ -30,9 +30,7 @@ def guest(request):
     if request.method == 'POST':
         print("we entered a POST method on guest page")
         city = request.POST['city']
-
-    city_weather = requests.get(
-        url.format(city)).json()  # request the API data and convert the JSON to Python data types
+    city_weather = requests.get(url.format(city)).json()  # request the API data and convert the JSON to Python data types
     weather = {
         'city': city,
         'temperature': city_weather['main']['temp'],
@@ -68,6 +66,8 @@ def index(request):
         form = CityForm(request.POST)                    # create a City instance with the entered city name
         if form.is_valid():                                        # for adding error handling
             instance = form.save(commit=False)
+            instance.name=instance.name.lower()
+            # print(instance.name) #for debug
             instance.owner = request.user
             instance.save()
             #form.save()                                                 # add this to the sqlite City database
