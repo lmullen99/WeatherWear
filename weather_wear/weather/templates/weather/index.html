@@ -98,9 +98,15 @@
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <!-- only display precipitation if it is present-->
+                                        <br> {{ weather.precipitation }}
                                         <br> {{ weather.humidity }} % humidity
+                                        <!-- <br> {{ weather.description }} -->
+
+                                        <!-- only display wind if it is high enough -->
+                                        {% if weather.wind > 10 %}
                                         <br> {{ weather.wind }} mph wind speed
-                                        <br> {{ weather.description }}
+                                        {% endif %}
                                         <div class = "box" >
                                             {{ weather.city }} outfit forecast:
                                             <br> top: {{ outfit.top }}
@@ -131,7 +137,9 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
+    <footer class="footer has-text-centered">
+        <p>CEN4090L Project</p>
+        <p>Luciana Mullen and Leila Ganichot</p>
     </footer>
 </body>
 </html>

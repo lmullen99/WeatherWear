@@ -93,8 +93,11 @@
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <br> {{ weather.precipitation }}
                                         <br> {{ weather.humidity }} % humidity
+                                         {% if weather.wind > 15 %}
                                         <br> {{ weather.wind }} mph wind speed
+<<<<<<< HEAD
                                         <br> {{ weather.description }}
                                         <hr>
                                     <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
@@ -104,6 +107,14 @@
                                              <br> {{ outfit.top }}
                                             <br> bottom:
                                              <br> {{ outfit.bottom }}
+=======
+                                        {% endif %}
+                                       <!-- <br> {{ weather.description }} -->
+                                        <div class = "box" >
+                                            {{ weather.city }} outfit forecast:
+                                            <br> top: {{ outfit.top }}
+                                            <br> bottom: {{ outfit.bottom }}
+>>>>>>> outfit-forecast
                                                 {% if outfit.outwear != "none" %}
                                          </div>
                                         <div class="column">
@@ -124,7 +135,9 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
+   <footer class="footer has-text-centered">
+        <p>CEN4090L Project</p>
+        <p>Luciana Mullen and Leila Ganichot</p>
     </footer>
 </body>
 </html>

@@ -7,12 +7,14 @@ class City(models.Model):
     name = models.CharField(max_length=35)
 
 
+
     def __str__(self): #show the actual city name on the dashboard]
         return self.name
 
     class Meta: #show the plural of city as cities instead of citys
         verbose_name_plural = 'cities'
         unique_together = ('owner', 'name',)
+
 
 class Outfit(models.Model):
     temp = models.IntegerField(unique = True)
