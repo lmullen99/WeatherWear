@@ -1,10 +1,10 @@
 from django.urls import path, include
 from . import views
-from django.views.generic.base import TemplateView
-from .views import AboutView
+from django.views.generic.base import TemplateView, RedirectView
+from .views import AboutView, SignUpView
 from django.contrib.auth import views as auth_views
-from django.urls import path
-from .views import SignUpView
+from django.contrib.staticfiles.storage import staticfiles_storage
+
 
 urlpatterns = [
     path('index/', views.index, name='index'),  #the path for our index view
@@ -15,5 +15,5 @@ urlpatterns = [
     path('', views.guest, name="guest"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('delete/index', views.index),
-
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico')))
 ]

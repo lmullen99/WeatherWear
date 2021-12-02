@@ -1,7 +1,3 @@
-
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 import requests
 import sqlite3 as sql
 from .models import City, Outfit
@@ -10,8 +6,9 @@ from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
-from django.shortcuts import redirect
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 class AboutView(TemplateView):
     template_name = "about.html"

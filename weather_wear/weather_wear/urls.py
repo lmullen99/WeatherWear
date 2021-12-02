@@ -20,4 +20,5 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('weather.urls')),
+
 ]
