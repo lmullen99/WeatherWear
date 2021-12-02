@@ -88,9 +88,12 @@
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <br> {{ weather.precipitation }}
                                         <br> {{ weather.humidity }} % humidity
+                                         {% if weather.wind > 15 %}
                                         <br> {{ weather.wind }} mph wind speed
-                                        <br> {{ weather.description }}
+                                        {% endif %}
+                                       <!-- <br> {{ weather.description }} -->
                                         <div class = "box" >
                                             {{ weather.city }} outfit forecast:
                                             <br> top: {{ outfit.top }}

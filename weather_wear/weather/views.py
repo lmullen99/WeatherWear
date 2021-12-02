@@ -32,10 +32,21 @@ def guest(request):
     if city_weather['cod'] == "404":
         messages.error(request, "City not found.")
         return redirect('/')
+    try:
+        p = city_weather['weather'][0]['snow']
+        prec_type = 'snow'
+    except:
+        prec_type = 'main'
+    try:
+        p = city_weather['weather'][0]['rain']
+        prec_type = "rain"
+    except:
+        prec_type = 'main'
 
     weather = {
         'city': city,
         'temperature': city_weather['main']['temp'],
+        'precipitation': city_weather['weather'][0][prec_type],
         'humidity': city_weather['main']['humidity'],
         'description': city_weather['weather'][0]['description'],
         'wind': city_weather['wind']['speed'],
@@ -51,7 +62,7 @@ def guest(request):
 def delete(request):
     if request.method == 'POST':
         city = request.POST['pk']
-        City.objects.get(name = city).delete()
+        City.objects.get(name = city, owner = request.user).delete()
         messages.info(request, "Deletion successful.")
         return HttpResponseRedirect('index')
     else:
@@ -68,17 +79,21 @@ def index(request):
 
         form = CityForm(request.POST)                        # create a City instance with the entered city name
         if form.is_valid():                                  # add error handling
-            instance = form.save(commit=False)
-            city_weather = requests.get(url.format(instance.name)).json()
-            if city_weather['cod'] == "404":
-                messages.error(request, "City not found.")
-                return redirect('index')
+            try:
+                instance = form.save(commit=False)
+                city_weather = requests.get(url.format(instance.name)).json()
+                if city_weather['cod'] == "404":
+                    messages.error(request, "City not found.")
+                    return redirect('index')
 
-            instance.name=instance.name.lower()
-            instance.owner = request.user
-            instance.save()
+                instance.name=instance.name.lower()
+                instance.owner = request.user
+                instance.save()
+            except:
+                messages.error(request, "City already in favorites. Add a new city.")
+                return redirect('index')
         else:
-            messages.error(request, "City already in favorites. Add a new city.")
+            messages.error(request, "City not added")
             return redirect('index')
 
     form = CityForm()
@@ -87,10 +102,22 @@ def index(request):
 
     for city in cities:
             city_weather = requests.get(url.format(city)).json()        #request JSON data and converts to python data type
+            try:
+                p = city_weather['weather'][0]['snow']
+                prec_type = 'snow'
+            except:
+                prec_type = 'main'
+            try:
+                p = city_weather['weather'][0]['rain']
+                prec_type = "rain"
+            except:
+                prec_type = 'main'
+
             weather = {                                                 #created the weather variable
                 'city' : city,
                 'temperature' : city_weather['main']['temp'],
                 'humidity' : city_weather['main']['humidity'],
+                'precipitation': city_weather['weather'][0][prec_type],
                 'description' : city_weather['weather'][0]['description'],
                 'wind': city_weather['wind']['speed'],
                 'icon' : city_weather['weather'][0]['icon']

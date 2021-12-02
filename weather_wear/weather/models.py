@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class City(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default = None)
     # make sure name is unique here
-    name = models.CharField(max_length=25, unique = True)
+    name = models.CharField(max_length=25)
 
 
     def __str__(self): #show the actual city name on the dashboard]
@@ -12,6 +12,7 @@ class City(models.Model):
 
     class Meta: #show the plural of city as cities instead of citys
         verbose_name_plural = 'cities'
+        unique_together= ['owner', 'name']
 
 class Outfit(models.Model):
     temp = models.IntegerField(unique = True)
