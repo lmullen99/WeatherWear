@@ -64,8 +64,8 @@ def index(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=845b66b8bb799526bfe36f2e6c41589b'
     cities = City.objects.all().filter(owner=request.user)  # call the API on all the user's favorite cities
 
-
     if request.method == 'POST':
+
         form = CityForm(request.POST)                        # create a City instance with the entered city name
         if form.is_valid():                                  # add error handling
             instance = form.save(commit=False)
@@ -77,6 +77,9 @@ def index(request):
             instance.name=instance.name.lower()
             instance.owner = request.user
             instance.save()
+        else:
+            messages.error(request, "City already in favorites. Add a new city.")
+            return redirect('index')
 
     form = CityForm()
     weather_data = []
