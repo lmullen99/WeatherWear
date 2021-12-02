@@ -28,9 +28,6 @@ def guest(request):
     city = "Tallahassee"                                        # the default value to display for users
     if request.method == 'POST':
         city = request.POST['city']
-        if True in [char.isdigit() for char in city]:
-            messages.error(request, "City name must contain only letters")
-            return redirect('/')
     city_weather = requests.get(url.format(city)).json()        # request the API data and convert the JSON to Python data types
     if city_weather['cod'] == "404":
         messages.error(request, "City not found.")
@@ -72,10 +69,6 @@ def index(request):
         form = CityForm(request.POST)                        # create a City instance with the entered city name
         if form.is_valid():                                  # add error handling
             instance = form.save(commit=False)
-
-            if True in [char.isdigit() for char in instance.name]:
-                messages.error(request, "City name must contain only letters")
-                return redirect('index')
             city_weather = requests.get(url.format(instance.name)).json()
             if city_weather['cod'] == "404":
                 messages.error(request, "City not found.")
