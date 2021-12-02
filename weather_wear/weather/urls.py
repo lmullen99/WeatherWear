@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django.views.generic.base import TemplateView
-from .views import AboutView, GuestView
+from .views import AboutView
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from .views import SignUpView
