@@ -1,12 +1,13 @@
 <!--index.html
     This file handles the view for the home page of a logged in user-->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <title>WeatherWear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -84,7 +85,8 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
-                    {% for weather in weather_data %}
+
+                    {% for weather, outfit in mylist %}
                     <div class="box">
                         <article class="media">
                             <div class="media-left">
@@ -102,21 +104,32 @@
                                         <br> {{ weather.precipitation }}
                                         <br> {{ weather.humidity }} % humidity
                                         <!-- <br> {{ weather.description }} -->
-
                                         <!-- only display wind if it is high enough -->
-                                        {% if weather.wind > 10 %}
+                                        {% if weather.wind > 15 %}
                                         <br> {{ weather.wind }} mph wind speed
                                         {% endif %}
-                                        <div class = "box" >
-                                            {{ weather.city }} outfit forecast:
-                                            <br> top: {{ outfit.top }}
-                                            <br> bottom: {{ outfit.bottom }}
+                                        <hr>
+                                    <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
+                                     <div class = "columns" >
+                                         <div class="column">
+                                            <br> top:
+                                             <br> {{ outfit.top }}
+                                            <br> bottom:
+                                             <br> {{ outfit.bottom }}
+                                       <!-- <br> {{ weather.description }} -->
+                                             </div>
                                                 {% if outfit.outwear != "none" %}
-                                            <br> outerwear: {{ outfit.outerwear }}
+                                        <div class="column">
+                                            <br> outerwear:
+                                            <br> {{ outfit.outerwear }}
                                                  {% endif %}
-                                            <br> accessories: {{ outfit.accessories }}
-                                            <br> footwear: {{outfit.footwear }}
+                                            <br> accessories:
+                                            <br> {{ outfit.accessories }}
+                                            <br> footwear:
+                                            <br> {{outfit.footwear }}
                                      </div>
+                                    </p>
+                                </div>
                                     <!-- delete a city functionality -->
                                         <form action="{% url 'delete' %}" method="POST">
                                             {% csrf_token %}

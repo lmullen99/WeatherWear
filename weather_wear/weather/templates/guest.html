@@ -97,8 +97,8 @@
                                         <br> {{ weather.humidity }} % humidity
                                          {% if weather.wind > 15 %}
                                         <br> {{ weather.wind }} mph wind speed
-<<<<<<< HEAD
-                                        <br> {{ weather.description }}
+                                            {% endif %}
+                                       <!-- <br> {{ weather.description }} -->
                                         <hr>
                                     <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
                                      <div class = "columns" >
@@ -107,16 +107,9 @@
                                              <br> {{ outfit.top }}
                                             <br> bottom:
                                              <br> {{ outfit.bottom }}
-=======
-                                        {% endif %}
                                        <!-- <br> {{ weather.description }} -->
-                                        <div class = "box" >
-                                            {{ weather.city }} outfit forecast:
-                                            <br> top: {{ outfit.top }}
-                                            <br> bottom: {{ outfit.bottom }}
->>>>>>> outfit-forecast
+                                             </div>
                                                 {% if outfit.outwear != "none" %}
-                                         </div>
                                         <div class="column">
                                             <br> outerwear:
                                             <br> {{ outfit.outerwear }}

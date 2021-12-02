@@ -119,12 +119,14 @@ def index(request):
                 'wind': city_weather['wind']['speed'],
                 'icon' : city_weather['weather'][0]['icon']
             }
+            # map the temp to a value that exists in the database by rounding to nearest 10
             weather_data.append(weather)
             temperature = round(weather['temperature'] / 10) * 10
             outfit = Outfit.objects.get(temp=temperature)
             outfit_data.append(outfit)
 
-    context = {'weather_data' : weather_data, 'form' : form, 'outfit_data' : outfit_data}
+    mylist = zip(weather_data, outfit_data)
+    context = {'mylist' : mylist, 'form' : form}
 
 
     return render(request, 'weather/index.html', context)
