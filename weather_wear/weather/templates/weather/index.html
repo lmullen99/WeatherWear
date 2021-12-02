@@ -88,9 +88,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
-
                     {% for weather, outfit in mylist %}
                     <div class="box">
+                     <!-- delete a city functionality -->
+                    <form action="{% url 'delete' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{weather.city}}" name="pk"/>
+                            <div class="content">
+                                <button class="delete is-medium">
+                                    <i class="fas fa-align-right"></i>
+                                </button>
+                            </div>
+                    </form>
                         <article class="media">
                             <div class="media-left">
                                 <figure class="image is-50x50">
@@ -103,25 +112,25 @@
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
-                                        <!-- only display precipitation if it is present-->
+                                        <!-- only display precipitation if it is present, otherwise the conditions-->
                                         <br> {{ weather.precipitation }}
-                                        <br> {{ weather.humidity }} % humidity
+                                        <br> {{ weather.humidity }} % Humidity
                                         <!-- <br> {{ weather.description }} -->
                                         <!-- only display wind if it is high enough -->
                                         {% if weather.wind > 15 %}
-                                        <br> {{ weather.wind }} mph wind speed
+                                        <br> {{ weather.wind }} MPH Wind Speed
                                         {% endif %}
-                                        <hr>
+                                        <br>
 
-                                    <button type="button" id="button">Outfit Forecast</button>
+                                    <div class = content><button class="button is-primary" id="button">Outfit Forecast</button></div>
                                         <script>
                                          $('#button').click(function(){
                                              $("#outfit").toggle()
                                                          })
                                          </script>
-
+                                    <!-- functionality to hide the outfit forecast until expanded -->
                                     <form hidden id="outfit">
-                                    <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
+                                    <div class ="subtitle "> {{ weather.city }} outfit forecast:</div>
                                      <div class = "columns" >
                                          <div class="column">
                                             <br> top:
@@ -143,17 +152,6 @@
                                    <!-- </p> -->
                                 </div>
                                 </form>
-
-                                    <!-- delete a city functionality -->
-                                        <form action="{% url 'delete' %}" method="POST">
-                                            {% csrf_token %}
-                                            <input type="hidden" value="{{weather.city}}" name="pk"/>
-                                                <div class="control">
-                                                    <button class="button is-danger is-light is-small" >
-                                                        Delete City
-                                                    </button>
-                                                </div>
-                                        </form>
                                     </p>
                                 </div>
                             </div>
