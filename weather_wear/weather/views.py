@@ -1,6 +1,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 import requests
 import sqlite3 as sql
 from .models import City
@@ -49,7 +50,7 @@ def delete(request):
         city = request.POST['pk']
         City.objects.get(name = city).delete()
         #return render(request, views.index)
-        return HttpResponse("Deletion successful ")
+        return HttpResponseRedirect('index')
     else:
         return HttpResponse("Deletion failed ")
 

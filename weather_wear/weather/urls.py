@@ -14,5 +14,6 @@ urlpatterns = [
     path('delete/', views.delete, name ="delete"),
     path('', views.guest, name="guest"),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('delete/index', views.index),
 
 ]
