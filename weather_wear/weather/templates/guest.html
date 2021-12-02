@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <script src=
+     "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
 
     <title>WeatherWear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
 
 </head>
 <body>
@@ -100,7 +104,16 @@
                                             {% endif %}
                                        <!-- <br> {{ weather.description }} -->
                                         <hr>
-                                    <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
+
+                                    <button type="button" id="button">Outfit Forecast</button>
+                                        <script>
+                                         $('#button').click(function(){
+                                             $("#outfit").toggle()
+                                                         })
+                                         </script>
+
+                                    <form hidden id="outfit">
+                                     <div class ="has-text-dark"> {{ weather.city }} outfit forecast:</div>
                                      <div class = "columns" >
                                          <div class="column">
                                             <br> top:
@@ -118,9 +131,10 @@
                                             <br> {{ outfit.accessories }}
                                             <br> footwear:
                                             <br> {{outfit.footwear }}
-                                     </div>
-                                    </p>
+                                         </div>
+                                     </p>
                                 </div>
+                                </form>
                             </div>
                         </article>
                     </div>
