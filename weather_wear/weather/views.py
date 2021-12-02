@@ -51,7 +51,7 @@ def guest(request):
 def delete(request):
     if request.method == 'POST':
         city = request.POST['pk']
-        City.objects.get(name = city).delete()
+        City.objects.get(name = city, owner = request.user).delete()
         messages.info(request, "Deletion successful.")
         return HttpResponseRedirect('index')
     else:
