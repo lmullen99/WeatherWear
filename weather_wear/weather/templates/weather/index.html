@@ -26,7 +26,6 @@
                      <a href="{% url 'logout' %}">Log Out</a>
                 </button>
                     {% else %}
-
                     <button class="button">
                     <a href="{% url 'login' %}">Log In</a>
                 </button>
@@ -38,6 +37,7 @@
             </div>
         </div>
     </section>
+
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -61,6 +61,21 @@
             </div>
         </div>
     </section>
+    <!-- flash error messages here -->
+        {% if messages %}
+    <section class="level-item">
+        <div class = "has-text-danger">
+                <ul class = "messages">
+                    {% for message in messages %}
+                    <li>
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+    </section>
+
     <section class="section">
         <div class="container">
             <div class="columns">
