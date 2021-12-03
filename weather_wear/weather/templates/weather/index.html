@@ -109,7 +109,7 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <span class="title">{{ weather.city }}</span>
+                                        <span class="title" style="text-transform: capitalize;" >{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
                                         <!-- only display precipitation if it is present, otherwise the conditions-->
@@ -130,23 +130,23 @@
                                          </script>
                                     <!-- functionality to hide the outfit forecast until expanded -->
                                     <form hidden id="outfit">
-                                    <div class ="subtitle "> {{ weather.city }} outfit forecast:</div>
+                                    <div class ="subtitles " style="text-transform: capitalize;"> <strong><u>{{ weather.city }} Outfit Forecast: </u></strong> </div>
                                      <div class = "columns" >
                                          <div class="column">
-                                            <br> top:
+                                            <br> <strong> Top: </strong>
                                              <br> {{ outfit.top }}
-                                            <br> bottom:
+                                            <br> <strong> Bottom: </strong>
                                              <br> {{ outfit.bottom }}
                                        <!-- <br> {{ weather.description }} -->
                                              </div>
                                                 {% if outfit.outwear != "none" %}
                                         <div class="column">
-                                            <br> outerwear:
+                                            <br> <strong> Outerwear: </strong>
                                             <br> {{ outfit.outerwear }}
                                                  {% endif %}
-                                            <br> accessories:
+                                            <br> <strong> Accessories: </strong>
                                             <br> {{ outfit.accessories }}
-                                            <br> footwear:
+                                            <br> <strong> Footwear: </strong>
                                             <br> {{outfit.footwear }}
                                         </div>
                                    <!-- </p> -->
