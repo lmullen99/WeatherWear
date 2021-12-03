@@ -20,6 +20,6 @@ class Outfit(models.Model):
     temp = models.IntegerField(unique = True)
     top = models.CharField(max_length=40)
     bottom = models.CharField(max_length=40)
-    outerwear = models.CharField(max_length=40)
+    outerwear = models.CharField(max_length=40, null=True, blank=True)
     accessories = models.CharField(max_length=50)
     footwear = models.CharField(max_length=40)
