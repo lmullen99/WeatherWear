@@ -53,7 +53,7 @@
                                 <input class="input" type="text" id="city" name="city" placeholder="City Name">
                             </div>
                             <div class="control">
-                                <button class="button is-info">
+                                <button class="button is-primary">
                                     Load City
                                 </button>
                             </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                        <span class="title">{{ weather.city }}</span>
+                                        <span class="title" style="text-transform: capitalize;">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
                                         <br> {{ weather.precipitation }}
@@ -113,7 +113,8 @@
 
                                     <form hidden id="outfit">
                                       <table class="table is-4">
-                                          <thead> <h>{{ weather.city }} outfit forecast:</h></thead>
+                                          <thead><div class="has-text-dark" style="text-transform: capitalize;">
+                                              <strong><u>{{ weather.city }} outfit forecast:</u></strong> </div></thead>
                                           <tbody>
                                             <tr><th>Top:</th>
                                             <td>{{ outfit.top }}</td></tr>

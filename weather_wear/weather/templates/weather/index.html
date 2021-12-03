@@ -107,7 +107,7 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                        <span class="title">{{ weather.city }}</span>
+                                        <span class="title" style="text-transform: capitalize;">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
                                         <!-- only display precipitation if it is present, otherwise the conditions-->
@@ -121,15 +121,18 @@
                                         <br>
                                 <!-- functionality to hide the outfit forecast until expanded -->
                                     <div><button class="button is-primary" id="button">Outfit Forecast</button></div>
+                                          <div class = content><button class="button is-primary" id="button">Outfit Forecast</button></div>
                                         <script>
-                                         $('#button').click(function(){
-                                             $("#outfit").toggle()})
+                                         $("#button").click(function(){
+                                             $("#outfit").show()
+                                            })
                                          </script>
                                     </div>
                                 <div>
                                     <form hidden id="outfit">
                                           <table class="table is-4">
-                                          <thead> <h>{{ weather.city }} outfit forecast:</h></thead>
+                                          <thead><div class ="subtitles " style="text-transform: capitalize;"> <strong><u>{{ weather.city }} Outfit Forecast: </u></strong> </div>
+</thead>
                                           <tbody>
                                             <tr><th>Top:</th>
                                             <td>{{ outfit.top }}</td></tr>
