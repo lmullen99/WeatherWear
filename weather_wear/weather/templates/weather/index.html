@@ -108,7 +108,6 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                    <p>
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
                                         <span class="subtitle">{{ weather.temperature }}° F</span>
@@ -121,39 +120,33 @@
                                         <br> {{ weather.wind }} MPH Wind Speed
                                         {% endif %}
                                         <br>
-
+                                        <!-- functionality to hide the outfit forecast until expanded -->
                                     <div class = content><button class="button is-primary" id="button">Outfit Forecast</button></div>
                                         <script>
                                          $('#button').click(function(){
                                              $("#outfit").toggle()})
                                          </script>
-                                    <!-- functionality to hide the outfit forecast until expanded -->
+                                    </div>
                                     <form hidden id="outfit">
-                                    <div class ="subtitle "> {{ weather.city }} outfit forecast:</div>
-                                     <div class = "columns" >
-                                         <div class="column">
-                                            <br> top:
-                                             <br> {{ outfit.top }}
-                                            <br> bottom:
-                                             <br> {{ outfit.bottom }}
-                                       <!-- <br> {{ weather.description }} -->
-                                             </div>
-                                                {% if outfit.outwear != "none" %}
-                                        <div class="column">
-                                            <br> outerwear:
-                                            <br> {{ outfit.outerwear }}
-                                                 {% endif %}
-                                            <br> accessories:
-                                            <br> {{ outfit.accessories }}
-                                            <br> footwear:
-                                            <br> {{outfit.footwear }}
-                                        </div>
-                                   <!-- </p> -->
+                                          <table class="table is-4">
+                                          <thead> <h>{{ weather.city }} outfit forecast:</h></thead>
+                                          <tbody>
+                                            <tr><th>Top:</th>
+                                            <td>{{ outfit.top }}</td></tr>
+                                            <tr><th>Bottom:</th>
+                                            <td>{{ outfit.bottom }}</td></tr>
+                                            {% if outfit.outwear != "none" %}
+                                            <tr><th>Outerwear:</th>
+                                            <td> {{ outfit.outerwear }}</td></tr>
+                                            {% endif %}
+                                              <tr><th>Accessories:</th>
+                                              <td>{{ outfit.accessories }}</td></tr>
+                                            <tr><th>Footwear:</th>
+                                            <td>{{outfit.footwear }}</td></tr>
+                                        </tbody>
+                                        </table>
+                                     </form>
                                 </div>
-                                </form>
-                                    </p>
-                                </div>
-                            </div>
                         </article>
                     </div>
                     {% endfor %}
