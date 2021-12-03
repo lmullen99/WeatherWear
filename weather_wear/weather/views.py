@@ -55,7 +55,10 @@ def guest(request):
     elif weather['wind'] > 20:
         temperature = temperature -5
     if weather['humidity'] > 50:
-        temperature = temperature +5
+        if temperature < 50:
+            temperature = temperature - 5
+        else:
+            temperature = temperature +5
     elif weather['humidity'] < 30:
         temperature = temperature -5
     if prec_type == 'rain':
