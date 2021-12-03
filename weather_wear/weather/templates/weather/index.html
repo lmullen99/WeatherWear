@@ -1,7 +1,6 @@
 <!--index.html
     This file handles the view for the home page of a logged in user-->
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -120,13 +119,14 @@
                                         <br> {{ weather.wind }} MPH Wind Speed
                                         {% endif %}
                                         <br>
-                                        <!-- functionality to hide the outfit forecast until expanded -->
-                                    <div class = content><button class="button is-primary" id="button">Outfit Forecast</button></div>
+                                <!-- functionality to hide the outfit forecast until expanded -->
+                                    <div><button class="button is-primary" id="button">Outfit Forecast</button></div>
                                         <script>
                                          $('#button').click(function(){
                                              $("#outfit").toggle()})
                                          </script>
                                     </div>
+                                <div>
                                     <form hidden id="outfit">
                                           <table class="table is-4">
                                           <thead> <h>{{ weather.city }} outfit forecast:</h></thead>
@@ -144,6 +144,7 @@
                                         </tbody>
                                         </table>
                                      </form>
+                                    </div>
                                 </div>
                         </article>
                     </div>
