@@ -122,7 +122,12 @@
                                             <tr><th>Outerwear:</th>
                                             <td> {{ outfit.outerwear }}</td></tr>
                                               <tr><th>Accessories:</th>
-                                              <td>{{ outfit.accessories }}</td></tr>
+                                                {% if weather.precipiation == 'rain' or 'snow' %}
+                                              <td>{{ outfit.accessories }}, umbrella</td></tr>
+                                                {% else %}
+                                            <td>{{ outfit.accessories }}</td></tr>
+
+                                            {% endif %}
                                             <tr><th>Footwear:</th>
                                             <td>{{outfit.footwear }}</td></tr>
                                         </tbody>

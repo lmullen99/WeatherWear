@@ -61,10 +61,6 @@ def guest(request):
             temperature = temperature +5
     elif weather['humidity'] < 30:
         temperature = temperature -5
-    if prec_type == 'rain':
-        print("ATTN: Tell user to bring an umbrella")
-    elif prec_type == 'snow':
-        print("ATTN: Tell user to wear a coat")
 
     temperature = round(temperature/10)*10
     if temperature < 10:
