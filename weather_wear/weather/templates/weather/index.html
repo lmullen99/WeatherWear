@@ -121,14 +121,16 @@
                                         <br> {{ weather.wind }} MPH Wind Speed
                                         {% endif %}
                                         <br>
-
                                     <div class = content><button class="button is-primary" id="button">Outfit Forecast</button></div>
                                         <script>
-                                         $('#button').click(function(){
-                                             $("#outfit").toggle()
+                                         $("#button").click(function(){
+                                             $("#outfit").show()
                                                          })
+
                                          </script>
+
                                     <!-- functionality to hide the outfit forecast until expanded -->
+
                                     <form hidden id="outfit">
                                     <div class ="subtitles " style="text-transform: capitalize;"> <strong><u>{{ weather.city }} Outfit Forecast: </u></strong> </div>
                                      <div class = "columns" >
@@ -153,6 +155,7 @@
                                 </div>
                                 </form>
                                     </p>
+
                                 </div>
                             </div>
                         </article>
