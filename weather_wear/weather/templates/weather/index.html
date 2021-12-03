@@ -18,14 +18,22 @@
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
-    <section class="hero is-info">
+    <section class="hero is-small is-info">
         <div class="hero-body">
+               <br>
+                 <div class="container level-item">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="{% static 'logo.png' %}">
+                </figure>
+            </div>
             <div class="container">
                 <div class = "has-background-black">
                 <h1 class="title">
                     {{ user.username}}'s favorite cities
                 </h1>
-                 <button class="button">
+                </div>
+         <div class="column is offset-0 is-4">
+                      <button class="button">
                     <a href="{% url 'guest' %}">Search for a City</a>
                 </button>
                     {% if user.is_authenticated %}
@@ -42,6 +50,7 @@
                     {% endif %}
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -121,7 +130,6 @@
                                         <br>
                                 <!-- functionality to hide the outfit forecast until expanded -->
                                     <div><button class="button is-primary" id="button">Outfit Forecast</button></div>
-                                          <div class = content><button class="button is-primary" id="button">Outfit Forecast</button></div>
                                         <script>
                                          $("#button").click(function(){
                                              $("#outfit").show()
