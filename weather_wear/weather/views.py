@@ -49,7 +49,21 @@ def guest(request):
         'wind': city_weather['wind']['speed'],
         'icon': city_weather['weather'][0]['icon']
     }
-    temperature = round(weather['temperature']/10)*10
+    temperature = weather['temperature']
+    if weather['wind'] > 50:
+        temperature = temperature -10
+    elif weather['wind'] > 20:
+        temperature = temperature -5
+    if weather['humidity'] > 50:
+        temperature = temperature +5
+    elif weather['humidity'] < 30:
+        temperature = temperature -5
+    if prec_type == 'rain':
+        print("ATTN: Tell user to bring an umbrella")
+    elif prec_type == 'snow':
+        print("ATTN: Tell user to wear a coat")
+
+    temperature = round(temperature/10)*10
     outfit = Outfit.objects.get(temp = temperature)
     context = {'weather' : weather, 'outfit' : outfit}
 
