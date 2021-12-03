@@ -64,6 +64,10 @@ def guest(request):
         print("ATTN: Tell user to wear a coat")
 
     temperature = round(temperature/10)*10
+    if temperature < 10:
+        temperature =10
+    elif temperature > 100:
+        temperature =100
     outfit = Outfit.objects.get(temp = temperature)
     context = {'weather' : weather, 'outfit' : outfit}
 
